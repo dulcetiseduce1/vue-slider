@@ -26,4 +26,34 @@ const slides = [
     }
 ];
 
-console.log(slides);
+/*
+1. Al click sulle frecce Su e Giù, l'immagine principale deve cambiare
+*/
+
+new Vue({
+    el: "#app",
+    data: {
+      slidesList: slides,
+      // Rappresenta l'indice dell'immagine attualmente visualizzata
+      currentIndex: 0,
+    },
+    methods: {
+      changeActiveImg(direction) {
+        if (direction === "next") {
+          // Incremento l'indice.
+          // Controllo se l'indice scritto è valido
+          this.currentIndex++;
+  
+          if (this.currentIndex >= this.slidesList.length) {
+            this.currentIndex = 0;
+          }
+        } else if (direction === "prev") {
+          this.currentIndex--;
+  
+          if (this.currentIndex < 0) {
+            this.currentIndex = this.slidesList.length - 1;
+          }
+        }
+      },
+    },
+  });
